@@ -1,6 +1,6 @@
 const models = require("../models");
 const jwt = require("jsonwebtoken");
-// const { Op } = require("sequelize");
+const { Op } = require("sequelize");
 
 exports.createMessage = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
@@ -51,9 +51,9 @@ exports.getAllMessages = (req, res, next) => {
   models.Message.findAll({
     order: [["updatedAt", "DESC"]],
     where: {
+      [Op.or]: [{ idCreater: userId }, { idUsers: userId }],
       idConversation: req.params.id,
     },
-    order: [["updatedAt", "DESC"]],
     include: [
       {
         model: models.User,

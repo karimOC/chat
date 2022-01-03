@@ -8,8 +8,6 @@ export default class allConversations extends Component {
     this.state = {
       userId: localStorage.getItem("id"),
       allConversations: [],
-      email: "",
-      error: "",
     };
   }
 
@@ -25,10 +23,18 @@ export default class allConversations extends Component {
       })
       .then((res) => {
         this.setState({ allConversations: res.data });
+        // console.log(this.state.allConversations);
       })
       .catch((error) => {
-        console.log({ error });
+        console.log(error);
       });
+  }
+
+  logout() {
+    if (window.confirm("Voulez-vous vous déconnecter ?")) {
+      localStorage.clear();
+      window.location.href = "/login";
+    }
   }
 
   componentDidMount() {
@@ -43,6 +49,7 @@ export default class allConversations extends Component {
         <div className="flex flex-col items-center justify-center w-full h-screen bg-slate-100">
           <div className="flex flex-col bg-white shadow-md rounded-lg w-3/4 h-3/4">
             <NewConversation />
+            <button onClick={this.logout}>Deconnection</button>
             <div className="flex flex-col h-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white pt-8 pl-6 pr-12 rounded-b-lg">
               <div>
                 <p className="text-3xl w-3/12 rounded-full font-bold mb-8 bg-white bg-gradient-to-r from-purple-500 to-pink-500 p-2">
@@ -67,9 +74,7 @@ export default class allConversations extends Component {
                     </div>
                     <div className="flex items-center w-full text-lg font-bold ml-1 border-b-2 border-white">
                       <Link to={`/profil/${conversation.id}`}>
-                        {conversation.guest.name} {conversation.guest.firstname}{" "}
-                        / {conversation.creator.name}{" "}
-                        {conversation.creator.firstname}
+                        {conversation.User.name} {conversation.User.firstname}
                       </Link>
                     </div>
                   </div>

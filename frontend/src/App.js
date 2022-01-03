@@ -25,9 +25,6 @@ function App() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/register" exact component={Register} />
-          <Route path="/login" exact component={Login} />
           <Route path="/profil" exact component={Profil} />
           {/* <Route path="/createconversation/" exact component={NewConversation} /> */}
           <Route path="/profil/:idConv" exact component={Conversation} />

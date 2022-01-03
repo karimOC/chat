@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
 
 exports.createConversation = (req, res, next) => {
-  const token = req.headers.authorization.split(" ")[1];
-  const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
-  const userId = decodedToken.userId;
+  // const token = req.headers.authorization.split(" ")[1];
+  // const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
+  // const userId = decodedToken.userId;
 
   if (req.body.email === "") {
     return res.status(400).json({ error: "Merci de remplir le champ email." });
@@ -26,14 +26,14 @@ exports.createConversation = (req, res, next) => {
       let userNew = user.id;
 
       models.Conversation.findOne({
-        where: {
-          idCreater: {
-            [Op.or]: [userId, user.id],
-          },
-          idUsers: {
-            [Op.or]: [user.id, userId],
-          },
-        },
+        // where: {
+        //   idCreater: {
+        //     [Op.or]: [userId, user.id],
+        //   },
+        //   idUsers: {
+        //     [Op.or]: [user.id, userId],
+        //   },
+        // },
       }).then((userConversation) => {
         // res.json(userConversation);
         if (userConversation) {
@@ -67,12 +67,6 @@ exports.getAllConversation = (req, res, next) => {
     include: [
       {
         model: models.User,
-        as: "creator",
-        attributes: ["name", "firstname", "id"],
-      },
-      {
-        model: models.User,
-        as: "guest",
         attributes: ["name", "firstname", "id"],
       },
     ],

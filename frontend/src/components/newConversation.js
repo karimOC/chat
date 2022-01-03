@@ -16,18 +16,33 @@ export default class newConversation extends Component {
   };
 
   addConversation(e) {
-    let token = localStorage.getItem("token");
     if (e.key === "Enter") {
+      // let token = localStorage.getItem("token");
+      // axios
+      //   .post("http://localhost:3000/api/conversations/", this.state, {
+      //     // headers: {
+      //     //   Authorization: "Bearer " + token,
+      //     // },
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //   })
+      //   .catch((error) => {
+      //     this.setState({ error: JSON.stringify(error) });
+      //     console.log(JSON.stringify(error));
+      //   });
       axios
-        .post("http://localhost:3000/api/conversations/", this.state, {
-          headers: { Authorization: "Bearer " + token },
-        })
-        .then((res) => {
-          console.log(res);
+        .post(
+          "http://localhost:3000/api/conversations/",
+          {
+            email: this.state.email,
+          },
+        )
+        .then((response) => {
+          console.log(response);
         })
         .catch((error) => {
-          this.setState({ error: JSON.stringify(error) });
-          console.log(JSON.stringify(error));
+          console.log(error.response.data.error);
         });
     }
   }
@@ -55,7 +70,7 @@ export default class newConversation extends Component {
             </svg>
             <input
               type="text"
-              placeholder="Ajouter un message..."
+              placeholder="Ajouter un email..."
               name="email"
               onKeyPress={this.addConversation.bind(this)}
               value={email}

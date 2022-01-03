@@ -5,7 +5,9 @@ const conversationRoutes = require("./routes/conversation");
 const messageRoutes = require("./routes/message");
 const userRoutes = require("./routes/user");
 // const profileRoutes = require("./routes/profile");
-const path = require("path");
+// const path = require("path");
+var cors = require("cors");
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
