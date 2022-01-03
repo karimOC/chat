@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Register from "./register";
 import Login from "./login";
 
 export default class Home extends Component {
@@ -7,7 +6,6 @@ export default class Home extends Component {
     return (
       <div>
         <Login />
-        <Register />
       </div>
     );
   }
