@@ -17,32 +17,25 @@ export default class newConversation extends Component {
 
   addConversation(e) {
     if (e.key === "Enter") {
-      // let token = localStorage.getItem("token");
-      // axios
-      //   .post("http://localhost:3000/api/conversations/", this.state, {
-      //     // headers: {
-      //     //   Authorization: "Bearer " + token,
-      //     // },
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((error) => {
-      //     this.setState({ error: JSON.stringify(error) });
-      //     console.log(JSON.stringify(error));
-      //   });
+      let token = localStorage.getItem("token");
       axios
         .post(
           "http://localhost:3000/api/conversations/",
           {
             email: this.state.email,
           },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         )
         .then((response) => {
+          document.location.reload();
           console.log(response);
         })
         .catch((error) => {
-          console.log(error.response.data.error);
+          this.setState({ error: error.response.data.error });
         });
     }
   }
@@ -52,7 +45,7 @@ export default class newConversation extends Component {
 
     return (
       <div>
-        <div className="flex items-center justify-center rounded-t-lg h-20 bg-gradient-to-r from-purple-500 to-pink-500">
+        <div className="flex flex-col items-center justify-center rounded-t-lg h-24 bg-gradient-to-r from-purple-500 to-pink-500">
           <div className="flex items-center justify-center w-4/12">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +71,7 @@ export default class newConversation extends Component {
               className="flex items-center w-full text-sm text-slate-600 py-2 px-3 rounded-full outline-none"
             />
           </div>
-          <div className="italic text-white mt-3">{error}</div>
+          <div className="flex italic text-white mt-3">{error}</div>
         </div>
       </div>
     );

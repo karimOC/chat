@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 
 router.get("/profil/", auth, conversationCtrl.getAllConversation);
 router.get("/profil/:id", auth, conversationCtrl.getOneConversation);
-router.post("/", conversationCtrl.createConversation);
+router.post("/", auth, conversationCtrl.createConversation);
 router.delete("/profil/:id", auth, conversationCtrl.deleteConversation);
 
 module.exports = router;

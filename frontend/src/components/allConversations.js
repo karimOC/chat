@@ -45,11 +45,16 @@ export default class allConversations extends Component {
     const { allConversations, error } = this.state;
 
     return (
-      <div>
+      <div className="bg-slate-100">
+        <button
+          className="rounded-full p-2 m-2 text-white bg-gradient-to-r from-cyan-500 to-blue-500"
+          onClick={this.logout}
+        >
+          Déconnexion
+        </button>
         <div className="flex flex-col items-center justify-center w-full h-screen bg-slate-100">
           <div className="flex flex-col bg-white shadow-md rounded-lg w-3/4 h-3/4">
             <NewConversation />
-            <button onClick={this.logout}>Deconnection</button>
             <div className="flex flex-col h-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white pt-8 pl-6 pr-12 rounded-b-lg">
               <div>
                 <p className="text-3xl w-3/12 rounded-full font-bold mb-8 bg-white bg-gradient-to-r from-purple-500 to-pink-500 p-2">
