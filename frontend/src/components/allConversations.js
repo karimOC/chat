@@ -77,7 +77,7 @@ export default class allConversations extends Component {
                         />
                       </svg>
                     </div>
-                    <div className="flex items-center w-full text-lg font-bold ml-1 border-b-2 border-white">
+                    <div className="flex items-center w-full text-lg font-bold ml-1 border-white">
                       <Link to={`/profil/${conversation.id}`}>
                         {conversation.User.name} {conversation.User.firstname}
                       </Link>

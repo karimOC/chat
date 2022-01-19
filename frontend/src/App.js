@@ -5,7 +5,6 @@ import Login from "./components/login";
 import Home from "./components/Home";
 import Profil from "./components/profil";
 import Conversation from "./components/conversation";
-// import NewConversation from "./components//newConversation";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -26,7 +25,6 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/profil" exact component={Profil} />
-          {/* <Route path="/createconversation/" exact component={NewConversation} /> */}
           <Route path="/profil/:idConv" exact component={Conversation} />
         </Switch>
       </BrowserRouter>
